@@ -3,7 +3,7 @@ package com.employee.service.constant;
 
 public class Enum {
 	
-	public enum Gender { Male, Female, Others}
+	public enum Gender { MALE, FEMALE, OTHERS}
 	
 	
 

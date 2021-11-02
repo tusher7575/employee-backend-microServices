@@ -13,8 +13,11 @@ import javax.persistence.PrePersist;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import lombok.Data;
+
 @MappedSuperclass
 
+@Data
 public class BaseEntity {
 
 
@@ -29,40 +32,9 @@ public class BaseEntity {
 
     @UpdateTimestamp
     private LocalDate updatedOn;
-    public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getUuid() {
-		return uuid;
-	}
-
-	public void setUuid(String uuid) {
-		this.uuid = uuid;
-	}
-
-
-	public LocalDate getCreatedOn() {
-		return createdOn;
-	}
-
-	public void setCreatedOn(LocalDate createdOn) {
-		this.createdOn = createdOn;
-	}
-
-
-	public LocalDate getUpdatedOn() {
-		return updatedOn;
-	}
-
-	public void setUpdatedOn(LocalDate updatedOn) {
-		this.updatedOn = updatedOn;
-	}
-	
+    
+    
+  
 	@PrePersist
 	public void uuidGen() {
 		String uuid = UUID.randomUUID().toString();

@@ -1,4 +1,5 @@
 package com.department.service.controller;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,26 +16,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.department.service.service.DepartmentService;
-
+import com.department.service.exception.EmptyInputException;
 import com.department.service.dto.DepartmentReqDTO;
 import com.department.service.dto.DepartmentResponseDTO;
 
-
-
-
-
 @RestController
-@RequestMapping ("/department")
+@RequestMapping("/department")
 public class DepartmentController {
-	
+
 	@Autowired
 	DepartmentService departmentService;
-	
+
 	@GetMapping("/all")
 	public List<DepartmentResponseDTO> getAllDepartmentsNew() {
 		return departmentService.findAll();
 	}
-	
+
 	@GetMapping("/active")
 	public List<DepartmentResponseDTO> getAllDepartmentsActive() {
 		return departmentService.findAllActive();
@@ -42,6 +39,11 @@ public class DepartmentController {
 
 	@PostMapping("/save")
 	public DepartmentResponseDTO saveDepartment(@RequestBody DepartmentReqDTO department) {
+
+		if (department.getDeptName().isEmpty()) {
+
+			throw new EmptyInputException("Department Name is Empty");
+		}
 		return departmentService.saveDepartment(department);
 
 	}

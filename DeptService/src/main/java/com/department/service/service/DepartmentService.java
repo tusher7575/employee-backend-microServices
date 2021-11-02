@@ -28,9 +28,9 @@ public class DepartmentService {
 
 		Department save = departmentRepository.save(dept);
 
-		DepartmentResponseDTO repDTO = convertEntityToDto(save);
+		DepartmentResponseDTO resDTO = convertEntityToDto(save);
 
-		return repDTO;
+		return resDTO;
 
 	}
 
@@ -40,20 +40,7 @@ public class DepartmentService {
 
 	}
 
-	private DepartmentResponseDTO convertEntityToDto(Department dept) {
-		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.LOOSE);
 
-		DepartmentResponseDTO DepartmentResponseDTO = new DepartmentResponseDTO();
-		DepartmentResponseDTO = modelMapper.map(dept, DepartmentResponseDTO.class);
-		return DepartmentResponseDTO;
-	}
-
-	private Department convertDtoToEntity(DepartmentReqDTO DepartmentReqDTO) {
-		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.LOOSE);
-		Department dept = new Department();
-		dept = modelMapper.map(DepartmentReqDTO, Department.class);
-		return dept;
-	}
 
 	public Boolean deleteByUuid(String uuid) {
 
@@ -100,6 +87,21 @@ public class DepartmentService {
 		
 		
 	
+	}
+	
+	private DepartmentResponseDTO convertEntityToDto(Department dept) {
+		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.LOOSE);
+
+		DepartmentResponseDTO DepartmentResponseDTO = new DepartmentResponseDTO();
+		DepartmentResponseDTO = modelMapper.map(dept, DepartmentResponseDTO.class);
+		return DepartmentResponseDTO;
+	}
+
+	private Department convertDtoToEntity(DepartmentReqDTO DepartmentReqDTO) {
+		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.LOOSE);
+		Department dept = new Department();
+		dept = modelMapper.map(DepartmentReqDTO, Department.class);
+		return dept;
 	}
 
 }

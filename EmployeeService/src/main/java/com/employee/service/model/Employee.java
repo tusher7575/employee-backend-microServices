@@ -20,12 +20,12 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class Employee extends BaseEntity {
+	
+	@Column(name = "emp_name",nullable = false,length = 35)
+	private String empName;
 
 	@Column(name = "code_num", unique = true)
 	private String code;
-
-	@Column(name = "emp_name")
-	private String empName;
 
 	@Column(name = "mob_no")
 	private String mobNo;
